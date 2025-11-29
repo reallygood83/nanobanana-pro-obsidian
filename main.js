@@ -51,27 +51,29 @@ var DEFAULT_SETTINGS = {
   // Advanced
   customPromptPrefix: ""
 };
-var SYSTEM_PROMPT = `You are an expert visual designer and infographic creator. Your task is to analyze the given content and generate a detailed prompt for creating a visually stunning knowledge poster/infographic.
+var SYSTEM_PROMPT = `You are an expert visual designer specializing in creating image generation prompts for AI art models.
 
-The prompt you generate will be used by an AI image generation model. Be specific about:
-1. Visual layout and composition
-2. Color scheme and style
-3. Typography hierarchy
-4. Icons and visual elements
-5. Data visualization if applicable
-6. Overall mood and aesthetic
+YOUR TASK: Analyze the user's content and create a detailed, specific image generation prompt for a knowledge poster/infographic.
 
-Generate ONLY the image prompt, no explanations or additional text.
+CRITICAL REQUIREMENTS:
+- Output ONLY the image prompt itself - no explanations, no introductions, no "Here's a prompt:" phrases
+- Start directly with the visual description
+- Be extremely specific about visual elements, colors, layout, and composition
+- Focus on concrete visual descriptions that an image AI can render
 
-Important guidelines:
-- The poster should be educational and informative
-- Use modern, clean design principles
-- Include visual representations of key concepts
-- Make it visually engaging and easy to understand
-- The text in the image should be minimal but impactful
-- Focus on visual storytelling
+PROMPT STRUCTURE TO FOLLOW:
+1. Overall scene/format description (e.g., "A modern infographic poster with...")
+2. Main visual elements and their arrangement
+3. Color palette (specific colors like "deep navy blue #1a365d, coral orange #ff6b6b")
+4. Typography style (e.g., "bold sans-serif headers, clean body text")
+5. Icons, illustrations, or visual metaphors to use
+6. Layout structure (grid, flow, hierarchy)
+7. Mood and aesthetic (e.g., "professional, minimalist, tech-inspired")
 
-Output format: A single, detailed image generation prompt.`;
+EXAMPLE OUTPUT FORMAT:
+"A sleek, modern infographic poster featuring [main topic] with a clean white background. The layout uses a vertical flow with a bold navy blue header containing the title in white sans-serif typography. Three main sections are arranged in colorful rounded cards (coral, teal, amber) with minimalist line icons. Visual metaphors include [specific icons/illustrations]. The bottom section features a summary callout box with key takeaways. Professional, educational aesthetic with high contrast and clear visual hierarchy."
+
+Remember: Generate ONLY the prompt text, starting immediately with the visual description.`;
 var IMAGE_GENERATION_PROMPT_TEMPLATE = `Create a stunning, professional knowledge poster/infographic with the following specifications:
 
 STYLE: {style}
@@ -365,8 +367,8 @@ ${content}` }
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        // System instruction separated properly for Gemini API
-        systemInstruction: {
+        // System instruction - REST API uses snake_case
+        system_instruction: {
           parts: [{ text: SYSTEM_PROMPT }]
         },
         contents: [{
@@ -387,7 +389,12 @@ ${content}`
       throw this.handleHttpError(response.status, response.text, "google");
     }
     const data = response.json;
-    return ((_f = (_e = (_d = (_c = (_b = (_a = data.candidates) == null ? void 0 : _a[0]) == null ? void 0 : _b.content) == null ? void 0 : _c.parts) == null ? void 0 : _d[0]) == null ? void 0 : _e.text) == null ? void 0 : _f.trim()) || "";
+    const generatedText = ((_f = (_e = (_d = (_c = (_b = (_a = data.candidates) == null ? void 0 : _a[0]) == null ? void 0 : _b.content) == null ? void 0 : _c.parts) == null ? void 0 : _d[0]) == null ? void 0 : _e.text) == null ? void 0 : _f.trim()) || "";
+    if (!generatedText) {
+      console.error("Gemini API response:", JSON.stringify(data, null, 2));
+      throw this.createError("GENERATION_FAILED", "Gemini API returned empty response. Check console for details.");
+    }
+    return generatedText;
   }
   async callAnthropic(model, apiKey, content) {
     var _a, _b, _c;
@@ -1381,7 +1388,7 @@ var NanoBananaPlugin = class extends import_obsidian7.Plugin {
     let progressModal = null;
     try {
       if (this.settings.showProgressModal) {
-        progressModal = new ProgressModal(this.app);
+        progressModal = new ProgressModal(this.app, this.settings.preferredLanguage);
         progressModal.open();
       }
       this.updateProgress(progressModal, {
@@ -1420,7 +1427,7 @@ ${finalPrompt}`;
         }
         finalPrompt = previewResult.prompt;
         if (this.settings.showProgressModal) {
-          progressModal = new ProgressModal(this.app);
+          progressModal = new ProgressModal(this.app, this.settings.preferredLanguage);
           progressModal.open();
         }
       }
@@ -1537,7 +1544,7 @@ ${finalPrompt}`;
     let progressModal = null;
     try {
       if (this.settings.showProgressModal) {
-        progressModal = new ProgressModal(this.app);
+        progressModal = new ProgressModal(this.app, this.settings.preferredLanguage);
         progressModal.open();
       }
       this.updateProgress(progressModal, {
@@ -1596,7 +1603,8 @@ ${finalPrompt}`;
         this.app,
         prompt,
         this.settings,
-        (result) => resolve(result)
+        (result) => resolve(result),
+        this.settings.preferredLanguage
       );
       modal.open();
     });

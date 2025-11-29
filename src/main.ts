@@ -106,7 +106,7 @@ export default class NanoBananaPlugin extends Plugin {
     try {
       // Show progress modal if enabled
       if (this.settings.showProgressModal) {
-        progressModal = new ProgressModal(this.app);
+        progressModal = new ProgressModal(this.app, this.settings.preferredLanguage);
         progressModal.open();
       }
 
@@ -157,7 +157,7 @@ export default class NanoBananaPlugin extends Plugin {
 
         // Reopen progress modal for image generation
         if (this.settings.showProgressModal) {
-          progressModal = new ProgressModal(this.app);
+          progressModal = new ProgressModal(this.app, this.settings.preferredLanguage);
           progressModal.open();
         }
       }
@@ -305,7 +305,7 @@ export default class NanoBananaPlugin extends Plugin {
 
     try {
       if (this.settings.showProgressModal) {
-        progressModal = new ProgressModal(this.app);
+        progressModal = new ProgressModal(this.app, this.settings.preferredLanguage);
         progressModal.open();
       }
 
@@ -374,7 +374,8 @@ export default class NanoBananaPlugin extends Plugin {
         this.app,
         prompt,
         this.settings,
-        (result) => resolve(result)
+        (result) => resolve(result),
+        this.settings.preferredLanguage
       );
       modal.open();
     });

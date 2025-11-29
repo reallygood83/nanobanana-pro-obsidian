@@ -97,8 +97,8 @@ export class PromptService {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // System instruction separated properly for Gemini API
-        systemInstruction: {
+        // System instruction - REST API uses snake_case
+        system_instruction: {
           parts: [{ text: SYSTEM_PROMPT }]
         },
         contents: [{
@@ -119,7 +119,16 @@ export class PromptService {
     }
 
     const data = response.json;
-    return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
+
+    // Debug: check if prompt was generated properly
+    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
+
+    if (!generatedText) {
+      console.error('Gemini API response:', JSON.stringify(data, null, 2));
+      throw this.createError('GENERATION_FAILED', 'Gemini API returned empty response. Check console for details.');
+    }
+
+    return generatedText;
   }
 
   private async callAnthropic(model: string, apiKey: string, content: string): Promise<string> {
