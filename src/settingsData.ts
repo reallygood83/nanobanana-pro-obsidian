@@ -9,10 +9,10 @@ export const DEFAULT_SETTINGS: NanoBananaSettings = {
 
   // Prompt Generation
   selectedProvider: 'google',
-  promptModel: 'gemini-2.0-flash-exp',
+  promptModel: 'gemini-2.5-flash',
 
   // Image Generation
-  imageModel: 'gemini-2.0-flash-exp',
+  imageModel: 'gemini-2.5-flash',
   imageStyle: 'infographic',
 
   // UX Settings

@@ -102,8 +102,8 @@ export const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   google: {
     name: 'Google Gemini',
     endpoint: 'https://generativelanguage.googleapis.com/v1beta/models',
-    defaultModel: 'gemini-2.0-flash-exp',
-    models: ['gemini-2.0-flash-exp', 'gemini-1.5-pro', 'gemini-1.5-flash']
+    defaultModel: 'gemini-2.5-flash',
+    models: ['gemini-2.5-flash', 'gemini-2.0-flash-exp', 'gemini-1.5-pro', 'gemini-1.5-flash']
   },
   anthropic: {
     name: 'Anthropic',
@@ -114,8 +114,8 @@ export const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   xai: {
     name: 'xAI',
     endpoint: 'https://api.x.ai/v1/chat/completions',
-    defaultModel: 'grok-beta',
-    models: ['grok-beta', 'grok-2']
+    defaultModel: 'grok-4-1-fast',
+    models: ['grok-4-1-fast', 'grok-beta', 'grok-2']
   }
 };
 

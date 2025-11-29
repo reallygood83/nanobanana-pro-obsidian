@@ -38,9 +38,9 @@ var DEFAULT_SETTINGS = {
   xaiApiKey: "",
   // Prompt Generation
   selectedProvider: "google",
-  promptModel: "gemini-2.0-flash-exp",
+  promptModel: "gemini-2.5-flash",
   // Image Generation
-  imageModel: "gemini-2.0-flash-exp",
+  imageModel: "gemini-2.5-flash",
   imageStyle: "infographic",
   // UX Settings
   showPreviewBeforeGeneration: true,
@@ -104,8 +104,8 @@ var PROVIDER_CONFIGS = {
   google: {
     name: "Google Gemini",
     endpoint: "https://generativelanguage.googleapis.com/v1beta/models",
-    defaultModel: "gemini-2.0-flash-exp",
-    models: ["gemini-2.0-flash-exp", "gemini-1.5-pro", "gemini-1.5-flash"]
+    defaultModel: "gemini-2.5-flash",
+    models: ["gemini-2.5-flash", "gemini-2.0-flash-exp", "gemini-1.5-pro", "gemini-1.5-flash"]
   },
   anthropic: {
     name: "Anthropic",
@@ -116,8 +116,8 @@ var PROVIDER_CONFIGS = {
   xai: {
     name: "xAI",
     endpoint: "https://api.x.ai/v1/chat/completions",
-    defaultModel: "grok-beta",
-    models: ["grok-beta", "grok-2"]
+    defaultModel: "grok-4-1-fast",
+    models: ["grok-4-1-fast", "grok-beta", "grok-2"]
   }
 };
 var IMAGE_STYLES = {
@@ -202,7 +202,7 @@ var NanoBananaSettingTab = class extends import_obsidian.PluginSettingTab {
     );
     containerEl.createEl("h2", { text: "\u{1F5BC}\uFE0F Image Generation" });
     new import_obsidian.Setting(containerEl).setName("Image Model").setDesc("Google Gemini model for image generation. Must support image output.").addText(
-      (text) => text.setPlaceholder("gemini-2.0-flash-exp").setValue(this.plugin.settings.imageModel).onChange(async (value) => {
+      (text) => text.setPlaceholder("gemini-2.5-flash").setValue(this.plugin.settings.imageModel).onChange(async (value) => {
         this.plugin.settings.imageModel = value;
         await this.plugin.saveSettings();
       })
