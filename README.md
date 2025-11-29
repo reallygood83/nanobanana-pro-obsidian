@@ -217,4 +217,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with 🍌 by NanoBanana
+## 👨‍💻 Developer
+
+**김문정 (Moon Jung Kim)** - 안양 박달초등학교
+
+[![X (Twitter)](https://img.shields.io/badge/X-@reallygood83-000000?style=flat&logo=x&logoColor=white)](https://x.com/reallygood83)
+[![YouTube](https://img.shields.io/badge/YouTube-배움의달인-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v)
+
+---
+
+Made with 🍌 by NanoBanana PRO
