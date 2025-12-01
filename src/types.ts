@@ -118,7 +118,7 @@ export const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
     name: 'xAI',
     endpoint: 'https://api.x.ai/v1/chat/completions',
     defaultModel: 'grok-4-1-fast',
-    models: ['grok-4-1-fast', 'grok-beta', 'grok-2']
+    models: ['grok-4-1-fast', 'grok-4-1-fast-reasoning', 'grok-4-1-fast-non-reasoning', 'grok-beta', 'grok-2-latest']
   }
 };
 

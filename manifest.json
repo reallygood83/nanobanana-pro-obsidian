@@ -1,7 +1,7 @@
 {
   "id": "nanobanana-pro-obsidian",
   "name": "NanoBanana PRO",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "minAppVersion": "0.15.0",
   "description": "Generate Knowledge Posters (infographics) from your notes using AI. Supports OpenAI, Gemini, Anthropic, and xAI.",
   "author": "NanoBanana",

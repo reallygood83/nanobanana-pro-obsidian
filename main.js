@@ -120,7 +120,7 @@ var PROVIDER_CONFIGS = {
     name: "xAI",
     endpoint: "https://api.x.ai/v1/chat/completions",
     defaultModel: "grok-4-1-fast",
-    models: ["grok-4-1-fast", "grok-beta", "grok-2"]
+    models: ["grok-4-1-fast", "grok-4-1-fast-reasoning", "grok-4-1-fast-non-reasoning", "grok-beta", "grok-2-latest"]
   }
 };
 var IMAGE_STYLES = {
@@ -435,30 +435,43 @@ ${content}` }
   }
   async callXAI(model, apiKey, content) {
     var _a, _b, _c;
-    const response = await (0, import_obsidian2.requestUrl)({
-      url: "https://api.x.ai/v1/chat/completions",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: `Create an image prompt for the following content:
+    console.log("[xAI Debug] Model:", model);
+    console.log("[xAI Debug] Content length:", content.length);
+    console.log("[xAI Debug] System prompt length:", SYSTEM_PROMPT.length);
+    try {
+      const response = await (0, import_obsidian2.requestUrl)({
+        url: "https://api.x.ai/v1/chat/completions",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: `Create an image prompt for the following content:
 
 ${content}` }
-        ],
-        temperature: 0.7
-        // max_tokens removed - let API use default/unlimited
-      })
-    });
-    if (response.status !== 200) {
-      throw this.handleHttpError(response.status, response.text, "xai");
+          ],
+          temperature: 0.7
+        })
+      });
+      console.log("[xAI Debug] Response status:", response.status);
+      if (response.status !== 200) {
+        console.error("[xAI Debug] Error response:", response.text);
+        throw this.handleHttpError(response.status, response.text, "xai");
+      }
+      const data = response.json;
+      console.log("[xAI Debug] Success! Response received");
+      return ((_c = (_b = (_a = data.choices[0]) == null ? void 0 : _a.message) == null ? void 0 : _b.content) == null ? void 0 : _c.trim()) || "";
+    } catch (error) {
+      console.error("[xAI Debug] FULL ERROR:", error);
+      console.error("[xAI Debug] Error type:", typeof error);
+      console.error("[xAI Debug] Error message:", error instanceof Error ? error.message : String(error));
+      console.error("[xAI Debug] Error stack:", error instanceof Error ? error.stack : "no stack");
+      throw error;
     }
-    const data = response.json;
-    return ((_c = (_b = (_a = data.choices[0]) == null ? void 0 : _a.message) == null ? void 0 : _b.content) == null ? void 0 : _c.trim()) || "";
   }
   handleHttpError(status, responseText, provider) {
     if (status === 401 || status === 403) {

@@ -172,32 +172,47 @@ export class PromptService {
   }
 
   private async callXAI(model: string, apiKey: string, content: string): Promise<string> {
-    // Restored to v1.0.1 simplicity - no content truncation, no complex logging
-    // grok-4-1-fast has large context window - let it handle full content
-    const response = await requestUrl({
-      url: 'https://api.x.ai/v1/chat/completions',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: model,
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content: `Create an image prompt for the following content:\n\n${content}` }
-        ],
-        temperature: 0.7
-        // max_tokens removed - let API use default/unlimited
-      })
-    });
+    // Debug: Log what we're sending
+    console.log('[xAI Debug] Model:', model);
+    console.log('[xAI Debug] Content length:', content.length);
+    console.log('[xAI Debug] System prompt length:', SYSTEM_PROMPT.length);
 
-    if (response.status !== 200) {
-      throw this.handleHttpError(response.status, response.text, 'xai');
+    try {
+      const response = await requestUrl({
+        url: 'https://api.x.ai/v1/chat/completions',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'user', content: `Create an image prompt for the following content:\n\n${content}` }
+          ],
+          temperature: 0.7
+        })
+      });
+
+      console.log('[xAI Debug] Response status:', response.status);
+
+      if (response.status !== 200) {
+        console.error('[xAI Debug] Error response:', response.text);
+        throw this.handleHttpError(response.status, response.text, 'xai');
+      }
+
+      const data = response.json;
+      console.log('[xAI Debug] Success! Response received');
+      return data.choices[0]?.message?.content?.trim() || '';
+    } catch (error) {
+      // Log the FULL error before any processing
+      console.error('[xAI Debug] FULL ERROR:', error);
+      console.error('[xAI Debug] Error type:', typeof error);
+      console.error('[xAI Debug] Error message:', error instanceof Error ? error.message : String(error));
+      console.error('[xAI Debug] Error stack:', error instanceof Error ? error.stack : 'no stack');
+      throw error;
     }
-
-    const data = response.json;
-    return data.choices[0]?.message?.content?.trim() || '';
   }
 
   private handleHttpError(status: number, responseText: string, provider: AIProvider): GenerationError {

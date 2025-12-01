@@ -1,6 +1,6 @@
 {
   "name": "nanobanana-pro-obsidian",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Generate Knowledge Posters (infographics) from your Obsidian notes using AI",
   "main": "main.js",
   "scripts": {
