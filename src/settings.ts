@@ -149,12 +149,12 @@ export class NanoBananaSettingTab extends PluginSettingTab {
       .setDesc('Default style for generated posters.')
       .addDropdown(dropdown => dropdown
         .addOptions({
-          'infographic': '📊 Infographic - Charts, icons, visual hierarchy',
-          'poster': '🎨 Poster - Bold typography, strong imagery',
-          'diagram': '📐 Diagram - Technical, clear connections',
-          'mindmap': '🧠 Mind map - Central concept with branches',
-          'timeline': '📅 Timeline - Progression and milestones',
-          'cartoon': '🎬 Cartoon - Comic strip with sequential panels'
+          'infographic': '📊 Infographic - charts, icons, visual hierarchy',
+          'poster': '🎨 Poster - bold typography, strong imagery',
+          'diagram': '📐 Diagram - technical, clear connections',
+          'mindmap': '🧠 Mind map - central concept with branches',
+          'timeline': '📅 Timeline - progression and milestones',
+          'cartoon': '🎬 Cartoon - comic strip with sequential panels'
         })
         .setValue(this.plugin.settings.imageStyle)
         .onChange(async (value: ImageStyle) => {
@@ -174,7 +174,7 @@ export class NanoBananaSettingTab extends PluginSettingTab {
             '4': '4 cuts (2×2 grid)',
             '6': '6 cuts (2×3 grid)',
             '8': '8 cuts (2×4 grid)',
-            'custom': 'Custom number'
+            'custom': 'custom number'
           })
           .setValue(this.plugin.settings.cartoonCuts)
           .onChange(async (value: CartoonCuts) => {
@@ -206,9 +206,9 @@ export class NanoBananaSettingTab extends PluginSettingTab {
       .setDesc('Higher resolution = better quality (especially for Korean text). 4K recommended for best results.')
       .addDropdown(dropdown => dropdown
         .addOptions({
-          '1K': '1K - Standard quality',
-          '2K': '2K - High quality',
-          '4K': '4K - Ultra HD quality (recommended) ⭐'
+          '1K': '1K - standard quality',
+          '2K': '2K - high quality',
+          '4K': '4K - ultra HD quality (recommended) ⭐'
         })
         .setValue(this.plugin.settings.imageSize)
         .onChange(async (value: ImageSize) => {

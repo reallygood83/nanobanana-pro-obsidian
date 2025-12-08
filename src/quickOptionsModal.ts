@@ -55,12 +55,12 @@ export class QuickOptionsModal extends Modal {
       .setDesc('Select the visual style for your knowledge poster')
       .addDropdown(dropdown => dropdown
         .addOptions({
-          'infographic': '📊 Infographic - Charts & visual hierarchy',
-          'poster': '🎨 Poster - Bold typography & imagery',
-          'diagram': '📐 Diagram - Technical connections',
-          'mindmap': '🧠 Mind map - Central concept & branches',
-          'timeline': '📅 Timeline - Progression & milestones',
-          'cartoon': '🎬 Cartoon - Comic strip panels'
+          'infographic': '📊 Infographic - charts & visual hierarchy',
+          'poster': '🎨 Poster - bold typography & imagery',
+          'diagram': '📐 Diagram - technical connections',
+          'mindmap': '🧠 Mind map - central concept & branches',
+          'timeline': '📅 Timeline - progression & milestones',
+          'cartoon': '🎬 Cartoon - comic strip panels'
         })
         .setValue(this.selectedStyle)
         .onChange((value: ImageStyle) => {
@@ -79,9 +79,9 @@ export class QuickOptionsModal extends Modal {
       .setDesc('Higher resolution = better quality (4K recommended for Korean text)')
       .addDropdown(dropdown => dropdown
         .addOptions({
-          '1K': '1K - Standard quality',
-          '2K': '2K - High quality',
-          '4K': '4K - Ultra HD quality ⭐'
+          '1K': '1K - standard quality',
+          '2K': '2K - high quality',
+          '4K': '4K - ultra HD quality ⭐'
         })
         .setValue(this.selectedSize)
         .onChange((value: ImageSize) => {
@@ -149,7 +149,7 @@ export class QuickOptionsModal extends Modal {
           '4': '4 cuts (2×2 grid)',
           '6': '6 cuts (2×3 grid)',
           '8': '8 cuts (2×4 grid)',
-          'custom': 'Custom number'
+          'custom': 'custom number'
         })
         .setValue(this.selectedCartoonCuts)
         .onChange((value: CartoonCuts) => {

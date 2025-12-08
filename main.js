@@ -224,12 +224,12 @@ var NanoBananaSettingTab = class extends import_obsidian.PluginSettingTab {
     );
     new import_obsidian.Setting(containerEl).setName("Image style").setDesc("Default style for generated posters.").addDropdown(
       (dropdown) => dropdown.addOptions({
-        "infographic": "\u{1F4CA} Infographic - Charts, icons, visual hierarchy",
-        "poster": "\u{1F3A8} Poster - Bold typography, strong imagery",
-        "diagram": "\u{1F4D0} Diagram - Technical, clear connections",
-        "mindmap": "\u{1F9E0} Mind map - Central concept with branches",
-        "timeline": "\u{1F4C5} Timeline - Progression and milestones",
-        "cartoon": "\u{1F3AC} Cartoon - Comic strip with sequential panels"
+        "infographic": "\u{1F4CA} Infographic - charts, icons, visual hierarchy",
+        "poster": "\u{1F3A8} Poster - bold typography, strong imagery",
+        "diagram": "\u{1F4D0} Diagram - technical, clear connections",
+        "mindmap": "\u{1F9E0} Mind map - central concept with branches",
+        "timeline": "\u{1F4C5} Timeline - progression and milestones",
+        "cartoon": "\u{1F3AC} Cartoon - comic strip with sequential panels"
       }).setValue(this.plugin.settings.imageStyle).onChange(async (value) => {
         this.plugin.settings.imageStyle = value;
         await this.plugin.saveSettings();
@@ -242,7 +242,7 @@ var NanoBananaSettingTab = class extends import_obsidian.PluginSettingTab {
           "4": "4 cuts (2\xD72 grid)",
           "6": "6 cuts (2\xD73 grid)",
           "8": "8 cuts (2\xD74 grid)",
-          "custom": "Custom number"
+          "custom": "custom number"
         }).setValue(this.plugin.settings.cartoonCuts).onChange(async (value) => {
           this.plugin.settings.cartoonCuts = value;
           await this.plugin.saveSettings();
@@ -261,9 +261,9 @@ var NanoBananaSettingTab = class extends import_obsidian.PluginSettingTab {
     }
     new import_obsidian.Setting(containerEl).setName("Image resolution").setDesc("Higher resolution = better quality (especially for Korean text). 4K recommended for best results.").addDropdown(
       (dropdown) => dropdown.addOptions({
-        "1K": "1K - Standard quality",
-        "2K": "2K - High quality",
-        "4K": "4K - Ultra HD quality (recommended) \u2B50"
+        "1K": "1K - standard quality",
+        "2K": "2K - high quality",
+        "4K": "4K - ultra HD quality (recommended) \u2B50"
       }).setValue(this.plugin.settings.imageSize).onChange(async (value) => {
         this.plugin.settings.imageSize = value;
         await this.plugin.saveSettings();
@@ -1459,12 +1459,12 @@ var QuickOptionsModal = class extends import_obsidian7.Modal {
     });
     new import_obsidian7.Setting(contentEl).setName("Image style").setDesc("Select the visual style for your knowledge poster").addDropdown(
       (dropdown) => dropdown.addOptions({
-        "infographic": "\u{1F4CA} Infographic - Charts & visual hierarchy",
-        "poster": "\u{1F3A8} Poster - Bold typography & imagery",
-        "diagram": "\u{1F4D0} Diagram - Technical connections",
-        "mindmap": "\u{1F9E0} Mind map - Central concept & branches",
-        "timeline": "\u{1F4C5} Timeline - Progression & milestones",
-        "cartoon": "\u{1F3AC} Cartoon - Comic strip panels"
+        "infographic": "\u{1F4CA} Infographic - charts & visual hierarchy",
+        "poster": "\u{1F3A8} Poster - bold typography & imagery",
+        "diagram": "\u{1F4D0} Diagram - technical connections",
+        "mindmap": "\u{1F9E0} Mind map - central concept & branches",
+        "timeline": "\u{1F4C5} Timeline - progression & milestones",
+        "cartoon": "\u{1F3AC} Cartoon - comic strip panels"
       }).setValue(this.selectedStyle).onChange((value) => {
         this.selectedStyle = value;
         this.updateCartoonSettings();
@@ -1474,9 +1474,9 @@ var QuickOptionsModal = class extends import_obsidian7.Modal {
     this.updateCartoonSettings();
     new import_obsidian7.Setting(contentEl).setName("Image resolution").setDesc("Higher resolution = better quality (4K recommended for Korean text)").addDropdown(
       (dropdown) => dropdown.addOptions({
-        "1K": "1K - Standard quality",
-        "2K": "2K - High quality",
-        "4K": "4K - Ultra HD quality \u2B50"
+        "1K": "1K - standard quality",
+        "2K": "2K - high quality",
+        "4K": "4K - ultra HD quality \u2B50"
       }).setValue(this.selectedSize).onChange((value) => {
         this.selectedSize = value;
       })
@@ -1525,7 +1525,7 @@ var QuickOptionsModal = class extends import_obsidian7.Modal {
         "4": "4 cuts (2\xD72 grid)",
         "6": "6 cuts (2\xD73 grid)",
         "8": "8 cuts (2\xD74 grid)",
-        "custom": "Custom number"
+        "custom": "custom number"
       }).setValue(this.selectedCartoonCuts).onChange((value) => {
         this.selectedCartoonCuts = value;
         this.updateCartoonSettings();
