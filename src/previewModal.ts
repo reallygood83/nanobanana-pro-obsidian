@@ -1,4 +1,4 @@
-import { App, Modal, Setting } from 'obsidian';
+import { App, Modal } from 'obsidian';
 import { NanoBananaSettings, PROVIDER_CONFIGS, IMAGE_STYLES, PreferredLanguage } from './types';
 import { getMessages, UIMessages } from './i18n';
 

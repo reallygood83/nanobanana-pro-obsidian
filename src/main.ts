@@ -1,5 +1,5 @@
 import { Plugin, MarkdownView, Notice, TFile } from 'obsidian';
-import { NanoBananaSettings, GenerationError, ProgressState, ImageStyle, ImageSize, CartoonCuts } from './types';
+import { NanoBananaSettings, GenerationError, ProgressState, CartoonCuts } from './types';
 import { DEFAULT_SETTINGS } from './settingsData';
 import { NanoBananaSettingTab } from './settings';
 import { PromptService } from './services/promptService';
@@ -226,7 +226,7 @@ export default class NanoBananaPlugin extends Plugin {
       if (progressModal) {
         progressModal.showSuccess(imagePath);
       } else {
-        new Notice('✅ knowledge poster generated successfully!');
+        new Notice('✅ Knowledge poster generated successfully!');
       }
 
     } catch (error) {
@@ -235,7 +235,7 @@ export default class NanoBananaPlugin extends Plugin {
       if (progressModal) {
         progressModal.showError(genError);
       } else {
-        new Notice(`❌ generation failed: ${genError.message}`);
+        new Notice(`❌ Generation failed: ${genError.message}`);
       }
 
       // Enhanced error logging for debugging
@@ -287,10 +287,10 @@ export default class NanoBananaPlugin extends Plugin {
       await navigator.clipboard.writeText(result.prompt);
       this.lastPrompt = result.prompt;
 
-      new Notice('✅ prompt copied to clipboard!');
+      new Notice('✅ Prompt copied to clipboard!');
     } catch (error) {
       const genError = error as GenerationError;
-      new Notice(`❌ failed: ${genError.message}`);
+      new Notice(`❌ Failed: ${genError.message}`);
     }
   }
 
@@ -373,7 +373,7 @@ export default class NanoBananaPlugin extends Plugin {
       if (progressModal) {
         progressModal.showSuccess(imagePath);
       } else {
-        new Notice('✅ poster regenerated successfully!');
+        new Notice('✅ Poster regenerated successfully!');
       }
 
     } catch (error) {
@@ -381,7 +381,7 @@ export default class NanoBananaPlugin extends Plugin {
       if (progressModal) {
         progressModal.showError(genError);
       } else {
-        new Notice(`❌ regeneration failed: ${genError.message}`);
+        new Notice(`❌ Regeneration failed: ${genError.message}`);
       }
     } finally {
       this.isGenerating = false;

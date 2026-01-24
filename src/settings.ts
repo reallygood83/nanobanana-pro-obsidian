@@ -149,12 +149,12 @@ export class NanoBananaSettingTab extends PluginSettingTab {
       .setDesc('Default style for generated posters.')
       .addDropdown(dropdown => dropdown
         .addOptions({
-          'infographic': '📊 infographic - charts, icons, visual hierarchy',
-          'poster': '🎨 poster - bold typography, strong imagery',
-          'diagram': '📐 diagram - technical, clear connections',
-          'mindmap': '🧠 mind map - central concept with branches',
-          'timeline': '📅 timeline - progression and milestones',
-          'cartoon': '🎬 cartoon - comic strip with sequential panels'
+          'infographic': '📊 Infographic - charts, icons, visual hierarchy',
+          'poster': '🎨 Poster - bold typography, strong imagery',
+          'diagram': '📐 Diagram - technical, clear connections',
+          'mindmap': '🧠 Mind map - central concept with branches',
+          'timeline': '📅 Timeline - progression and milestones',
+          'cartoon': '🎬 Cartoon - comic strip with sequential panels'
         })
         .setValue(this.plugin.settings.imageStyle)
         .onChange(async (value: ImageStyle) => {
@@ -315,12 +315,12 @@ export class NanoBananaSettingTab extends PluginSettingTab {
 
     const linksDiv = aboutDiv.createDiv({ cls: 'nanobanana-links' });
     linksDiv.createEl('a', {
-      text: '📖 documentation',
+      text: '📖 Documentation',
       href: 'https://github.com/username/nanobanana-pro-obsidian#readme'
     });
     linksDiv.createEl('span', { text: ' | ' });
     linksDiv.createEl('a', {
-      text: '🐛 report issue',
+      text: '🐛 Report issue',
       href: 'https://github.com/username/nanobanana-pro-obsidian/issues'
     });
   }

@@ -108,7 +108,7 @@ export const MESSAGES: Record<PreferredLanguage, UIMessages> = {
 
   en: {
     // Progress Modal
-    progressTitle: '🎨 generating knowledge poster...',
+    progressTitle: '🎨 Generating knowledge poster...',
     estimatedTime: '⏱️ estimated time: about 15-30 seconds',
     cancel: 'Cancel',
 
@@ -120,13 +120,13 @@ export const MESSAGES: Record<PreferredLanguage, UIMessages> = {
     stepEmbedding: 'Embedding in note',
 
     // Success
-    successTitle: '✅ knowledge poster created!',
+    successTitle: '✅ Knowledge poster created!',
     successSaved: '📁 saved to',
     confirm: 'OK',
 
     // Error
-    errorTitle: '❌ generation failed',
-    errorSolutions: '💡 solutions:',
+    errorTitle: '❌ Generation failed',
+    errorSolutions: '💡 Solutions:',
     retry: 'Retry',
     close: 'Close',
 
@@ -144,18 +144,18 @@ export const MESSAGES: Record<PreferredLanguage, UIMessages> = {
     suggestionAddContent: 'Please add content to your note',
 
     // Preview Modal
-    previewTitle: '📝 prompt preview',
+    previewTitle: '📝 Prompt preview',
     previewPromptLabel: 'Generated prompt (editable):',
     previewCharacters: 'characters',
-    previewTipsTitle: '💡 tips:',
+    previewTipsTitle: '💡 Tips:',
     previewTip1: 'You can edit the prompt to adjust the desired style',
     previewTip2: 'Adding specific colors, layouts, and elements will give better results',
     previewTip3: 'Use the "Regenerate" button to create a new prompt',
-    previewGenerate: '🎨 generate image',
-    previewRegenerate: '🔄 regenerate',
-    previewPromptModel: '🤖 prompt model',
-    previewImageModel: '🖼️ image model',
-    previewStyle: '📊 style'
+    previewGenerate: '🎨 Generate image',
+    previewRegenerate: '🔄 Regenerate',
+    previewPromptModel: '🤖 Prompt model',
+    previewImageModel: '🖼️ Image model',
+    previewStyle: '📊 Style'
   },
 
   ja: {
